@@ -45,7 +45,7 @@ You wil then have a tab open for each of them to help save time.
 ![alt text][pic3]
 
 # 2. Create the Kafka topic and MQ Queue for this lab.<a name="Setup_connections"></a>
-# 2.1 Create the Kafka topic<a name="Setup_kafka"></a>
+# 2.1. Create the Kafka topic<a name="Setup_kafka"></a>
 
 1\. Now go to the tab for **es-demo** or you can click on the link from the home page and this will take you to the IBM Event Streams home page.   
 
@@ -76,7 +76,7 @@ You wil then have a tab open for each of them to help save time.
 
 ![alt text][tst6]
 
-# 2.2 Create MQ Queue for the consumer<a name="Setup_MQ"></a>
+# 2.2. Create MQ Queue for the consumer<a name="Setup_MQ"></a>
 
 1\.Now go to the tab for **MQ Console**
 
@@ -130,9 +130,9 @@ In this section, we will create a simple API that will create messages and then 
 
 **Note:** We are just building the one flow to put the events to a queue but you could also build additional flows for other business units to react to the same message and send email, Slack, etc.
 
-# 3.1 Create API to publish message to Kafka topic<a name="Create_API"></a>
+# 3.1. Create API to publish message to Kafka topic<a name="Create_API"></a>
 
-1\.Now go to the tab for **IBM Automation**
+1\. Now go to the tab for **IBM Automation**
 
 ![alt text][pic3]
 
@@ -178,7 +178,7 @@ Click on the drop down to add an operation.
 
 ![alt text][des8]
 
-9\.If you already have a connection you can skip to **Step 12**
+9\. If you already have a connection you can skip to **Step 12**
 If not, click on **Connect**.
 
 ![alt text][des9]
@@ -189,7 +189,7 @@ If not, click on **Connect**.
 
 11\. Now fill in the fields.  We will use the SCRAM credential.
 
-Optional: In case you would like to know how to create your SCRAM credential, go to [Create a connection to the Kafka clusters](../Kafka-Pre-lab/Kafka-Pre-Lab.md) page.
+**Optional**: In case you would like to know how to create your SCRAM credential, go to [Create a connection to the Kafka clusters](../Kafka-Pre-lab/Kafka-Pre-Lab.md) page.
 
 * a\. username: SCRAM username (we have created an username for you consumer01)
 * b\. password: SCRAM password (ask the password to the instructors)
@@ -197,7 +197,7 @@ Optional: In case you would like to know how to create your SCRAM credential, go
 
 
 * For the Security mechanism: make sure to select the **512**
-* Open the es-cert.pem file we downloaded.  Copy the whole thing and paste in the CA certificate.  Scroll to the bottom and Click **Connect**.
+* Download the es-cert.pem file from the PoT resources link provided by the instructor.  Copy the whole thing and paste in the CA certificate.  Scroll to the bottom and Click **Connect**.
 
 ![alt text][des11]
 
@@ -256,19 +256,13 @@ You should already have an Account setup from the last section.
 
 6\. Now click on the blue **+** and scroll down to the **IBM MQ** connector or just start typing in the search field.  Select the **Put message on a queue**.
 If you don't have an Account already setup for your MQ connector **click on Connect**
-If you have a Account already setup skip to **Step XX**
 
 ![alt text][des19]
 
 7\. Now you will fill in the connection details:
 
-Provide credentials for App Connect to use (BASIC)
-
 * Enter the QMgr name **Queue Manager Name**. It should be MQGR and the number of your student. For example MQGR1
-* For the QMgr host we will use the **(service-name)**. If you click on the mq service you can see the hostname on the URL. For example qmgrX-ibm-mq
-
-Provide credentials for App Connect to use (BASIC)
-
+* For the QMgr host we will use the **(service-name)**. It should be qmgrX-ibm-mq, where 'x' is your student number.
 * Port is 1414
 * Channel SYSTEM.DEF.SVRCONN
 
@@ -308,11 +302,11 @@ When done click on the **Dashboard** in the upper left corner.
 [des23]: images/des23.png
 
 
-# 4 Testing the Kafka flows <a name="test_designer_flow"></a>
+# 4. Testing the Kafka flows <a name="test_designer_flow"></a>
 
 We will now test the new Kafka flows.   
 
-1\. If you are on the Dashboards, goes to point 3. If not, you will now be on your home page and in the upper left it will show your login name and you can always click on **IBM Cloud Pak|Automation** to get to this home page.   
+1\. If you are on the Dashboards, jump to point 3. If not, you will now be on your home page and in the upper left it will show your login name and you can always click on **IBM Cloud Pak Automation** to get to this home page.   
 
 * For this lab we will be using **App Connect Designer** *ace-desxxx*, under Integration Messaging we will use **MQ** *qmgrX*, and under Event Streaming we will use **es-demo** *es-demo* for our Kafka broker.
 
@@ -339,8 +333,7 @@ You will then have a tab open for each of them to help save time.
 
 ![alt text][tst4]
 
-7\. Now scroll down the API test page and you can click on **Generate** to populate the body of the API.  This will show all the fields for the API call.  You can change the fields if you like as in this example.
-Click **Send** button.
+7\. Now scroll down the API test page and you can click on **Generate** to populate the body of the API.  This will show all the fields for the API call.  You can change the fields if you like as in this example. Click **Send** button.
 
 You will then see the API Request and the Response to the API call.   We have just produced a kafka message and the offset is 5 which is returned in the API call. Just to have into account, offset depends on the number of messages. For the first message offset is 0, for the second is 1 and so on.
 Take note of the offset returned on the response in order to watch it later.
@@ -359,12 +352,11 @@ You can click on the message to open it and see the content.
 
 ![alt text][tst7a]
 
-10\. Now let's go to the MQ Console tab and click on your Queue Manager title, in this example it is MQGR1.
-You will see that your queue should show zero messages.  This is since we didn't start the consumer flow yet to put the kafka messages to the queue.  
+10\. Now let's go to the MQ Console tab and click on your Queue Manager title, in this example it is MQGR1. You will see that your queue should show zero messages.  This is since we didn't start the consumer flow yet to put the kafka messages to the queue.  
 
 ![alt text][tst8]
 
-11\. Now let's go back to the to the  App Connect Dashboard.  You will see that the Consumer flow is not running.  Click on the 3 dots of the tile and select start to start the flow.   
+11\. Now let's go back to the to the App Connect Dashboard.  You will see that the Consumer flow is not running.  Click on the 3 dots of the tile and select start to start the flow.   
 
 ![alt text][tst9]
 
@@ -373,11 +365,13 @@ You will see that your queue should show zero messages.  This is since we didn't
 ![alt text][tst10]
 
 13\. Now let's go back to the MQ Console tab and click on your Queue Manager title, in this example it is MQGR1.
-Click on the Refresh Icon and you should see a message on your queue now.  **Note** This is due to Kafka broker keeping the messages available so when applications start up they can go back and pick up messages that have already been produced.   
+Click on the Refresh Icon and you should see a message on your queue now.
+
+ **Note:** This is due to Kafka broker keeping the messages available so when applications start up they can go back and pick up messages that have already been produced.   
 
 ![alt text][tst11]
 
-14\.You can click on the queue to view the message and the data.
+14\. You can click on the queue to view the message and the data.
 
 ![alt text][tst12]
 
